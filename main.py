@@ -19,7 +19,21 @@ sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "terrible", "s
 
 #List of memes
 starter_encouragements = [
-    "Always remember: Wigan 1-0 Manchester City", "At least you didn't lose 8-2....","At least you're not Ishan", "Think about Barca 6-1 PSG", "Don't be sad, look at Arsenal!", "Did you lose 4-0 against Liverpool and Divock? Did you lose 3-0 against Roma and Manolas? Did you lose 8-2 to Bayern? Than life is good. Unless you're an Arsenal Fan.", "Never forget: West Brom 5-2 Chelsea", "As long as you don't wear baggy pants and tighty whities at the same time, you'll be fine in life. Just ask Ishan!", "Chapathis, jigglying in my belly! - Ishan Mungikar", "Fun Fact: Ishan and Goaters had a phase called Style, where they would pull up the pants where high, and tuck in their shirt. They looked those basketball players from the 1980s.", "Fun Fact: Once, Goaters had a tap in on the goal line but defied physics and hit the crossbar.", "Nipun in rocket league: NippinDots has left the party. NippinDots lost connection", "Fun Fact: One time at a party at Nipun's house, Ishan sat on Nihaal's head and gave him another concussion right after Nihaal healed from his last one. Smart right?", "Fun Fact: In eigth grade, Nihaal broke one of his arms. The day he got his brace off, he broke his other arm. Talk about stupid.", "Ishan in the group chat: Ill come at 3:30. Ishan at the soccer field: *comes at 4:30", "Nipun: It's so fun to play with my belly!"
+    "Always remember: Wigan 1-0 Manchester City", 
+    "At least you didn't lose 8-2....",
+    "At least you're not Ishan", 
+    "Think about Barca 6-1 PSG", 
+    "Don't be sad, look at Arsenal!", 
+    "Did you lose 4-0 against Liverpool and Divock? Did you lose 3-0 against Roma and Manolas? Did you lose 8-2 to Bayern? Than life is good. Unless you're an Arsenal Fan.", 
+    "Never forget: West Brom 5-2 Chelsea", "As long as you don't wear baggy pants and tighty whities at the same time, you'll be fine in life. Just ask Ishan!", 
+    "Chapathis, jigglying in my belly! - Ishan Mungikar", 
+    "Fun Fact: Ishan and Goaters had a phase called Style, where they would pull up the pants where high, and tuck in their shirt. They looked those basketball players from the 1980s.", 
+    "Fun Fact: Once, Goaters had a tap in on the goal line but defied physics and hit the crossbar.", 
+    "Nipun in rocket league: NippinDots has left the party. NippinDots lost connection", 
+    "Fun Fact: One time at a party at Nipun's house, Ishan sat on Nihaal's head and gave him another concussion right after Nihaal healed from his last one. Smart right?", 
+    "Fun Fact: In eigth grade, Nihaal broke one of his arms. The day he got his brace off, he broke his other arm. Talk about stupid.", 
+    "Ishan in the group chat: Ill come at 3:30. Ishan at the soccer field: *comes at 4:30", 
+    "Nipun: It's so fun to play with my belly!"
 ]
 
 #Choose a random quote from a database
