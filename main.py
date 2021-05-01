@@ -34,6 +34,7 @@ starter_encouragements = [
     "Fun Fact: In eigth grade, Nihaal broke one of his arms. The day he got his brace off, he broke his other arm. Talk about stupid.", 
     "Ishan in the group chat: Ill come at 3:30. Ishan at the soccer field: *comes at 4:30", 
     "Nipun: It's so fun to play with my belly!"
+    "Never let Nipun near your garage"
 ]
 
 #Choose a random quote from a database
