@@ -89,7 +89,7 @@ async def on_message(message):
     if msg.startswith('$greatestmatch'):
       await message.channel.send(send_story())
     #check each message if in sad_words so we can send a meme
-    if any(word in msg for word in sad_words):
+    if any(word in msg.lower() for word in sad_words):
         await message.channel.send(random.choice(starter_encouragements))
 
 
