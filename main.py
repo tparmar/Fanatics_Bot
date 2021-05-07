@@ -12,8 +12,8 @@ import time
 #Create Discord Client
 client = discord.Client()
 #Set prefix
-client = commands.Bot(command_prefix = '$')
-client.remove_command('help') #Remove inbuilt help command in discord.py
+bot = commands.Bot(command_prefix = '$')
+bot.remove_command('help') #Remove inbuilt help command in discord.py
 
 #List of words that the discord client will read so that they can send a meme of encouragement
 sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "terrible", "sucks", "depressing", "unfair"]
@@ -53,7 +53,7 @@ def send_story():
 #Set discord rich presence of discord bot
 @client.event
 async def on_ready():
-    await client.change_presence(status = discord.Status.online, activity = discord.Game(name="Soccer", type = "3"))
+    await client.change_presence(status = discord.Status.online, activity = discord.Game(name="Soccer | Made by Goaters", type = "2"))
     print('We have logged in as {0.user}'.format(client))
 
 cooldown = True
@@ -75,11 +75,14 @@ async def on_message(message):
     if msg.startswith('$greatestmatch'):
       await message.channel.send(send_story())
     #check each message if in sad_words so we can send a meme:
-    if any(word in msg.lower() for word in sad_words) and cooldown:
-        cooldown = False
-        await message.channel.send(random.choice(starter_encouragements))
-        time.sleep(60)
-        cooldown = True
+    if any(word in msg.lower() for word in sad_words):
+        if cooldown == True:
+            await message.channel.send(random.choice(starter_encouragements))
+            cooldown = False
+        elif cooldown == False:
+            time.sleep(60)
+            cooldown = True
+        
     
     #help command
     if message.content.startswith("$help"):
