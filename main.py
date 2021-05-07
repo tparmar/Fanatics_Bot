@@ -56,12 +56,13 @@ async def on_ready():
     await client.change_presence(status = discord.Status.online, activity = discord.Game(name="Soccer", type = "3"))
     print('We have logged in as {0.user}'.format(client))
 
+cooldown = True
 @client.event
 #When message sent
 async def on_message(message):
+    global cooldown
     if message.author == client.user:
         return
-    countdown = True
     msg = message.content
     # '$quote' command
     if msg.startswith('$quote'):
@@ -73,14 +74,12 @@ async def on_message(message):
     # '$greatestmatch' command
     if msg.startswith('$greatestmatch'):
       await message.channel.send(send_story())
-    #check each message if in sad_words so we can send a meme
-    if countdown == True:
-        if any(word in msg.lower() for word in sad_words):
-            await message.channel.send(random.choice(starter_encouragements))
-            countdown = False
-    if countdown == False:
+    #check each message if in sad_words so we can send a meme:
+    if any(word in msg.lower() for word in sad_words) and cooldown:
+        cooldown = False
+        await message.channel.send(random.choice(starter_encouragements))
         time.sleep(60)
-        countdown = True
+        cooldown = True
     
     #help command
     if message.content.startswith("$help"):
