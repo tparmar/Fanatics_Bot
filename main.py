@@ -75,13 +75,13 @@ async def on_message(message):
     if msg.startswith('$greatestmatch'):
       await message.channel.send(send_story())
     #check each message if in sad_words so we can send a meme:
-    if any(word in msg.lower() for word in sad_words):
-        if cooldown == True:
+    if cooldown:
+        if any(word in msg.lower() for word in sad_words):
             await message.channel.send(random.choice(starter_encouragements))
             cooldown = False
-        elif cooldown == False:
-            time.sleep(60)
-            cooldown = True
+    elif cooldown == False:
+        time.sleep(60)
+        cooldown = True
         
     
     #help command
