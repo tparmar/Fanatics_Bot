@@ -78,8 +78,9 @@ async def on_message(message):
         if any(word in msg.lower() for word in sad_words):
             await message.channel.send(random.choice(starter_encouragements))
             countdown = False
-            time.sleep(60)
-            countdown = True
+    if countdown == False:
+        time.sleep(60)
+        countdown = True
     
     #help command
     if message.content.startswith("$help"):
