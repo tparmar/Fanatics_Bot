@@ -11,7 +11,7 @@ import asyncio
 #Create Discord Client
 client = discord.Client()
 #Set prefix
-client = commands.Bot(command_prefix = '.')
+client = commands.Bot(command_prefix = '$')
 client.remove_command('help') #Remove inbuilt help command in discord.py
 
 #List of words that the discord client will read so that they can send a meme of encouragement
