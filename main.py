@@ -11,7 +11,7 @@ import asyncio
 #Create Discord Client
 client = discord.Client()
 #Set prefix
-client = commands.Bot(command_prefix = '$')
+client = commands.Bot(command_prefix = '.')
 client.remove_command('help') #Remove inbuilt help command in discord.py
 
 #List of words that the discord client will read so that they can send a meme of encouragement
@@ -55,22 +55,6 @@ async def on_ready():
     await client.change_presence(status = discord.Status.online, activity = discord.Game(name="Soccer", type = "3"))
     print('We have logged in as {0.user}'.format(client))
 
-#TODO: help command; doesn't work for some reason
-@client.command(pass_context=True)
-async def help(ctx):
-  author = ctx.message.author
-  #Embeded message with all the commands
-  embed = discord.Embed(
-    colour = discord.Colour.orange()
-  )
-  embed.set_author(name = 'Help')
-  embed.add_field(name = '$quote', value = 'Returns a random quote', inline = False)
-  embed.add_field(name = "$memes", value = "Returns a soccer meme", inline = False)
-  embed.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
-
-  await client.send(author, embed=embed)
-
-
 @client.event
 #When message sent
 async def on_message(message):
@@ -91,6 +75,14 @@ async def on_message(message):
     #check each message if in sad_words so we can send a meme
     if any(word in msg.lower() for word in sad_words):
         await message.channel.send(random.choice(starter_encouragements))
+    
+    #help command
+    if message.content.startswith("$help"):
+        embedVar = discord.Embed(title="Commands of Fanatics Bot", description="Here are all of the commands of the Fanatics bot right now.", color=0x00ff00)
+        embedVar.add_field(name = '$quote', value = 'Returns a random quote', inline = False)
+        embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
+        embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
+        await message.channel.send(embed=embedVar)
 
 
 keep_alive()
