@@ -7,6 +7,7 @@ from keep_alive import keep_alive
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
+import time
 
 #Create Discord Client
 client = discord.Client()
@@ -60,7 +61,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
+    countdown = True
     msg = message.content
     # '$quote' command
     if msg.startswith('$quote'):
@@ -74,7 +75,11 @@ async def on_message(message):
       await message.channel.send(send_story())
     #check each message if in sad_words so we can send a meme
     if any(word in msg.lower() for word in sad_words):
-        await message.channel.send(random.choice(starter_encouragements))
+        if countdown == True:
+          await message.channel.send(random.choice(starter_encouragements))
+          countdown = False
+          time.sleep(60)
+          countdown = True
     
     #help command
     if message.content.startswith("$help"):
