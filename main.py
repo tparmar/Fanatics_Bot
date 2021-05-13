@@ -11,8 +11,9 @@ import time
 
 #Create Discord Client
 client = discord.Client()
+
 #Set prefix
-bot = commands.Bot(command_prefix = '$')
+bot = commands.Bot(command_prefix = '.')
 bot.remove_command('help') #Remove inbuilt help command in discord.py
 
 #List of words that the discord client will read so that they can send a meme of encouragement
@@ -74,14 +75,19 @@ async def on_message(message):
     # '$greatestmatch' command
     if msg.startswith('$greatestmatch'):
       await message.channel.send(send_story())
+
+    if msg.startswith('$pic'):
+        with open('/Users/teerthu/Documents/Python_codes/Basic_Python/discord_bot/Discord_repl/messi_pic.jpeg', 'rb') as f:
+            picture = discord.File(f)
+            await message.channel.send(file = picture)
     #check each message if in sad_words so we can send a meme:
-    if cooldown:
-        if any(word in msg.lower() for word in sad_words):
+    if any(word in msg.lower() for word in sad_words):
+        if cooldown == True:
             await message.channel.send(random.choice(starter_encouragements))
             cooldown = False
-    elif cooldown == False:
-        time.sleep(60)
-        cooldown = True
+        else:
+            time.sleep(60)
+            cooldown = True
         
     
     #help command
