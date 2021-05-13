@@ -77,9 +77,13 @@ async def on_message(message):
       await message.channel.send(send_story())
 
     if msg.startswith('$pic'):
-        with open('/Users/teerthu/Documents/Python_codes/Basic_Python/discord_bot/Discord_repl/messi_pic.jpeg', 'rb') as f:
-            picture = discord.File(f)
-            await message.channel.send(file = picture)
+      with open('pics/messi_2.jpeg', 'rb') as f:
+        picture = discord.File(f)
+        await message.channel.send(file = picture)
+    if msg.startswith('$messi'):
+      with open('pics/messi_pic.jpeg', 'rb') as f:
+        picture = discord.File(f)
+        await message.channel.send(file = picture)
     #check each message if in sad_words so we can send a meme:
     if any(word in msg.lower() for word in sad_words):
         if cooldown == True:
