@@ -100,6 +100,7 @@ async def on_message(message):
         embedVar.add_field(name = '$quote', value = 'Returns a random quote', inline = False)
         embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
         embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
+        embedVar.add_field(name = "$pic", value = "Returns picture of Messi", inline = False)
         await message.channel.send(embed=embedVar)
 
 
