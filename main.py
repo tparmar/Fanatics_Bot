@@ -20,7 +20,7 @@ bot.remove_command('help') #Remove inbuilt help command in discord.py
 sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "terrible", "sucks", "depressing", "unfair"]
 
 #List of memes
-starter_encouragements = [
+memes = [
     "Always remember: Wigan 1-0 Manchester City", 
     "At least you didn't lose 8-2....",
     "At least you're not Ishan", 
@@ -71,7 +71,7 @@ async def on_message(message):
         await message.channel.send(quote)
     # '$meme' command
     if msg.startswith('$meme'):
-        await message.channel.send(random.choice(starter_encouragements))
+        await message.channel.send(random.choice(memes))
     # '$greatestmatch' command
     if msg.startswith('$greatestmatch'):
       await message.channel.send(send_story())
@@ -87,7 +87,7 @@ async def on_message(message):
     #check each message if in sad_words so we can send a meme:
     if any(word in msg.lower() for word in sad_words):
         if cooldown == True:
-            await message.channel.send(random.choice(starter_encouragements))
+            await message.channel.send(random.choice(memes))
             cooldown = False
         else:
             time.sleep(60)
