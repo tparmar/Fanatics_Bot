@@ -54,7 +54,7 @@ def send_story():
 #Set discord rich presence of discord bot
 @client.event
 async def on_ready():
-    await client.change_presence(status = discord.Status.online, activity = discord.Game(name="Soccer | Made by Goaters", type = "2"))
+    await client.change_presence(status = discord.Status.online, activity = discord.Game(name= "Soccer | Made by Goaters", type = "2"))
     print('We have logged in as {0.user}'.format(client))
 
 cooldown = True
