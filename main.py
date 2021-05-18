@@ -103,12 +103,11 @@ async def on_message(message):
 
     #check each message if in sad_words so we can send a meme:
     if any(word in msg.lower() for word in sad_words):
-        if cooldown == True:
+
+        ran = random.randint(0,1)
+        if ran == 0:
             await message.channel.send(random.choice(memes))
-            cooldown = False
-        else:
-            time.sleep(60)
-            cooldown = True
+            
         
     
     #help command
