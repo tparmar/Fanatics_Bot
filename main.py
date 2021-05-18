@@ -36,8 +36,17 @@ memes = [
     "Fun Fact: One time at a party at Nipun's house, Ishan sat on Nihaal's head and gave him another concussion right after Nihaal healed from his last one. Smart right?", 
     "Fun Fact: In eigth grade, Nihaal broke one of his arms. The day he got his brace off, he broke his other arm. Talk about stupid.", 
     "Ishan in the group chat: Ill come at 3:30. Ishan at the soccer field: *comes at 4:30", 
-    "Nipun: It's so fun to play with my belly!"
-    "Never let Nipun near your garage"
+    "Nipun: It's so fun to play with my belly! :flushed:",
+    "Never let Nipun near your garage",
+    "Remember that time a little kid scored an open goal? Me neither",
+    "Want some salt? Ask Ishan about Sid's cherry-picking :laughing:",
+    "That time Alisson scored against West Brom in the 95th minute :laughing:",
+    "Fun Fact: One time, Sid tried to get fancy on an open goal and tried to roulette it in, but missed the ball. Shourya took it forward, passed to Kuhsh, who crossed it in for Arjuna (who was on the other team) who volleyed it into his own net. What a play! :rofl:",
+    "Remember that time Arsenal finished in the top 4? Me neither.",
+    "Ask Liverpool fans where their center backs are. They won't be able to tell you anything.",
+    "What's more empty, Manchester city's fanbase or Tottenham's trophy cabinet?",
+    "Tottenham Fans vs Arsenal Fans ----- Totenham fans: \'Arsenal haven't finished top 4 in like forever, they are not even in Europe next season, and you guys have such bad players. I mean look at your table position!\' Arsenal Fans: \'We won the FA cup, so we are better\'"
+
 ]
 
 #Choose a random quote from a database
@@ -56,7 +65,7 @@ def send_story():
 #Set discord rich presence of discord bot
 @client.event
 async def on_ready():
-    await client.change_presence(status = discord.Status.online, activity = discord.Game(name= "Soccer | Made by Goaters", type = "2"))
+    await client.change_presence(status = discord.Status.online, activity = discord.Game(name= "$help for commands | Made by Goaters", type = "2"))
     print('We have logged in as {0.user}'.format(client))
 
 cooldown = True
