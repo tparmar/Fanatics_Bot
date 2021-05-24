@@ -7,8 +7,8 @@ from keep_alive import keep_alive
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
-import time
-import random
+
+
 
 #Create Discord Client
 client = discord.Client()
