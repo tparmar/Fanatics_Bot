@@ -90,7 +90,7 @@ async def on_message(message):
     
     #'pic' with barca command
     if msg.startswith("$pic barca") or msg.startswith("$pic fcb") or msg.startswith("$pic bar"):
-        num = random.randint(0,4)
+        num = random.randint(0,6)
         if num == 0:
             with open('pics/messi_pic.jpeg', 'rb') as f:
                 picture = discord.File(f)
@@ -111,6 +111,15 @@ async def on_message(message):
             with open('pics/lord_braithwaite.png', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
+        elif num == 5:
+            with open('pics/cool_messi.png', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        elif num == 6:
+            with open('pics/umtiti.png', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+
     #'pic' with liverpool command
     if msg.startswith("$pic liverpool") or msg.startswith("$pic liv"):
         num = random.randint(0,4)
@@ -134,7 +143,20 @@ async def on_message(message):
             with open('pics/trento2.jpg', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
-
+    if msg.startswith("$pic mun") or msg.startswith("$pic man united"):
+        num = random.randint(0,1)
+        if num == 0:
+            with open('pics/phil_jones_1.png', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        if num == 1:
+            with open('pics/phil_jones_2.png', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+    if msg.startswith("$pic tot") or msg.startswith("$pic tottenham"):
+        with open("pics/hareth_kane.png", 'rb') as f:
+            picture = discord.File(f)
+            await message.channel.send(file = picture)
     #check each message if in sad_words so we can send a meme:
     if any(word in msg.lower() for word in sad_words):
 
