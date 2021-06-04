@@ -68,11 +68,10 @@ async def on_ready():
     await client.change_presence(status = discord.Status.online, activity = discord.Game(name= "$help for commands | Made by Goaters", type = "2"))
     print('We have logged in as {0.user}'.format(client))
 
-cooldown = True
+
 @client.event
 #When message sent
 async def on_message(message):
-    global cooldown
     if message.author == client.user:
         return
     msg = message.content
@@ -89,15 +88,47 @@ async def on_message(message):
     if msg.startswith('$greatestmatch'):
       await message.channel.send(send_story())
     
-    #'pic' command
-    if msg.startswith("$pic"):
-        num = random.randint(0,1)
+    #'pic' with barca command
+    if msg.startswith("$pic barca") or msg.startswith("$pic fcb"):
+        num = random.randint(0,3)
         if num == 0:
             with open('pics/messi_pic.jpeg', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
         elif num == 1:
             with open('pics/messi_2.jpeg', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        elif num == 2:
+            with open('pics/pique2.jpeg', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        else:
+            with open('pics/griezi_cele.jpg', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+
+    #'pic' with liverpool command
+    if msg.startswith("$pic liverpool") or msg.startswith("$pic liv"):
+        num = random.randint(0,4)
+        if num == 0:
+            with open('pics/liverpool_champions.jpg', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        elif num == 1:
+            with open('pics/var.png', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        elif num == 2:
+            with open('pics/virgil_pfp.jpg', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        elif num == 3:
+            with open('pics/virgil_pfp2.jpeg', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        elif num == 4:
+            with open('pics/trento2.jpg', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
 
