@@ -45,8 +45,18 @@ memes = [
     "Remember that time Arsenal finished in the top 4? Me neither.",
     "Ask Liverpool fans where their center backs are. They won't be able to tell you anything.",
     "What's more empty, Manchester city's fanbase or Tottenham's trophy cabinet?",
-    "Tottenham Fans vs Arsenal Fans ----- Totenham fans: \'Arsenal haven't finished top 4 in like forever, they are not even in Europe next season, and you guys have such bad players. I mean look at your table position!\' Arsenal Fans: \'We won the FA cup, so we are better\'"
-
+    "Tottenham Fans vs Arsenal Fans ----- Totenham fans: \'Arsenal haven't finished top 4 in like forever, they are not even in Europe next season, and you guys have such bad players. I mean look at your table position!\' Arsenal Fans: \'We won the FA cup, so we are better\'",
+    "Fun Fact: To protest against hate toward LGBTQ, Ishan changed his name to Jessica with the pronouns as \'Ze\' and \'Zhem\'",
+    "Fun Fact: Lord Bendter has: more wolrd cup games than George Best, more world cup goals than di stefano, more euro goals than R9, more UCL goals than pele, more premier league goals than Lionel Messi, more bundesliga goals than CR7, and more league titles than Gerrard and Reus combined. ALL HAIL LORD BENDTER",
+    "Nihaal's Rocket League IQ = 0",
+    "What is a ghost's favorite soccer position? Ghoul Keeper :rofl:",
+    "Why can't Cinderella play soccer? Because she always runs away from the ball",
+    "Where do soccer players go to dance? The Futball :rofl:",
+    "What lights up a soccer stadium? A soccer match :laughing:",
+    "Why did the chicken get ejected from the soccer game? For persistent fowl play.",
+    "Where's the best place to shop for a soccer uniform? New Jersey :rofl:",
+    "How do we know that soccer referees are happy? Because they whiste while they work :laughing:",
+    "What would you get if you crossed a soccer player and the Invisible Man? He would play soccer like no one hs ever seen :rofl:"
 ]
 
 #Choose a random quote from a database
