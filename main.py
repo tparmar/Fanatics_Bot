@@ -89,7 +89,7 @@ async def on_message(message):
       await message.channel.send(send_story())
     
     #'pic' with barca command
-    if msg.startswith("$pic barca") or msg.startswith("$pic fcb"):
+    if msg.startswith("$pic barca") or msg.startswith("$pic fcb") or msg.startswith("$pic bar"):
         num = random.randint(0,3)
         if num == 0:
             with open('pics/messi_pic.jpeg', 'rb') as f:
@@ -147,7 +147,7 @@ async def on_message(message):
         embedVar.add_field(name = '$quote', value = 'Returns a random quote', inline = False)
         embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
         embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
-        embedVar.add_field(name = "$pic [team]", value = "Returns picture related to specified team. So far supports Liverpool (liv, liverpool) or Barcelona (barca, fcb)", inline = False)
+        embedVar.add_field(name = "$pic [team]", value = "Returns picture related to specified team. So far supports Liverpool (liv, liverpool) or Barcelona (barca, fcb, bar)", inline = False)
         await message.channel.send(embed=embedVar)
 
 
