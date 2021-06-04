@@ -154,9 +154,15 @@ async def on_message(message):
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
     if msg.startswith("$pic tot") or msg.startswith("$pic tottenham"):
-        with open("pics/hareth_kane.png", 'rb') as f:
-            picture = discord.File(f)
-            await message.channel.send(file = picture)
+        num = random.randint(0,1)
+        if num == 0:
+            with open("pics/hareth_kane.png", 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
+        elif num == 1:
+            with open("pics/bele.jpeg", 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
     #check each message if in sad_words so we can send a meme:
     if any(word in msg.lower() for word in sad_words):
 
@@ -172,7 +178,7 @@ async def on_message(message):
         embedVar.add_field(name = '$quote', value = 'Returns a random quote', inline = False)
         embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
         embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
-        embedVar.add_field(name = "$pic [team]", value = "Returns picture related to specified team. So far supports Liverpool (liv, liverpool) or Barcelona (barca, fcb, bar)", inline = False)
+        embedVar.add_field(name = "$pic [team]", value = "Returns picture related to specified team. So far supports Liverpool, Barcelona, Tottenham, and Manchester United", inline = False)
         await message.channel.send(embed=embedVar)
 
 
