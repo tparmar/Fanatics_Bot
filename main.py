@@ -90,7 +90,7 @@ async def on_message(message):
     
     #'pic' with barca command
     if msg.startswith("$pic barca") or msg.startswith("$pic fcb") or msg.startswith("$pic bar"):
-        num = random.randint(0,3)
+        num = random.randint(0,4)
         if num == 0:
             with open('pics/messi_pic.jpeg', 'rb') as f:
                 picture = discord.File(f)
@@ -103,11 +103,14 @@ async def on_message(message):
             with open('pics/pique2.jpeg', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
-        else:
+        elif num == 3:
             with open('pics/griezi_cele.jpg', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
-
+        elif num == 4:
+            with open('pics/lord_braithwaite.png', 'rb') as f:
+                picture = discord.File(f)
+                await message.channel.send(file = picture)
     #'pic' with liverpool command
     if msg.startswith("$pic liverpool") or msg.startswith("$pic liv"):
         num = random.randint(0,4)
