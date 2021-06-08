@@ -8,7 +8,10 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
 import google
+
 from googlesearch import search
+except ImportError:
+    print("No module named 'google' found")
 
 #Create Discord Client
 client = discord.Client()
