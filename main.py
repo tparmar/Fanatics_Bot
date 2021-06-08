@@ -7,8 +7,8 @@ from keep_alive import keep_alive
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
-
-
+import google
+from googlesearch import search
 
 #Create Discord Client
 client = discord.Client()
@@ -71,6 +71,8 @@ def send_story():
   story = "It was March 8, 2017, and the weather was beautiful. Everyone felt it. The vibe. Although Barca were down 4-0 against PSG, there was just a feeling that Barca was still in it. As Sriboy once said: I smell a comeback! The game had an impressive attendance of 96,290 despite the home side's heavy defeat in the first game. Barcelona's Luis Suárez scored the first goal of the game in the 3rd minute after heading the ball over the line before it was cleared by Thomas Meunier. In the 40th minute, Paris Saint-Germain's Layvin Kurzawa scored an own goal in an attempt to block a shot by Andrés Iniesta. The third goal came in the 50th minute via a penalty scored by Lionel Messi after Neymar was fouled by Thomas Meunier. Barcelona's hopes were seemingly brought down after Edinson Cavani scored Paris Saint-Germain's only goal in the 62nd minute, leaving them requiring three more to win due to the away goals rule now favouring PSG. Neymar scored two goals in the closing stages – a free kick in the 88th minute and a penalty kick in the 91st – to make it 5–1. In the final seconds of the match, Neymar delivered a cross into the penalty area, and Sergi Roberto scored their sixth and final goal in the 95th minute thus winning the game 6–1 and advancing to the quarter finals 6–5 on aggregate. WHAT A GAME I SAY, WHAT A GAME. Also, I miss Suarez. That guy had huge teeth."
   return story
 
+def convert(lst):
+    return (lst[0].split())
 
 #Set discord rich presence of discord bot
 @client.event
@@ -82,6 +84,8 @@ async def on_ready():
 @client.event
 #When message sent
 async def on_message(message):
+    emoji = '\N{THUMBS UP SIGN}'
+
     if message.author == client.user:
         return
     msg = message.content
@@ -89,14 +93,17 @@ async def on_message(message):
     if msg.startswith('$quote'):
         quote = get_quote()
         await message.channel.send(quote)
+        await message.add_reaction(emoji)
 
     # '$meme' command
     if msg.startswith('$meme'):
         await message.channel.send(random.choice(memes))
+        await message.add_reaction(emoji)
 
     # '$greatestmatch' command
     if msg.startswith('$greatestmatch'):
       await message.channel.send(send_story())
+      await message.add_reaction(emoji)
     
     #'pic' with barca command
     if msg.startswith("$pic barca") or msg.startswith("$pic fcb") or msg.startswith("$pic bar"):
@@ -129,6 +136,7 @@ async def on_message(message):
             with open('pics/umtiti.png', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
+        await message.add_reaction(emoji)
 
     #'pic' with liverpool command
     if msg.startswith("$pic liverpool") or msg.startswith("$pic liv"):
@@ -153,6 +161,7 @@ async def on_message(message):
             with open('pics/trento2.jpg', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
+        await message.add_reaction(emoji)
     if msg.startswith("$pic mun") or msg.startswith("$pic man united"):
         num = random.randint(0,1)
         if num == 0:
@@ -163,6 +172,7 @@ async def on_message(message):
             with open('pics/phil_jones_2.png', 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
+        await message.add_reaction(emoji)
     if msg.startswith("$pic tot") or msg.startswith("$pic tottenham"):
         num = random.randint(0,1)
         if num == 0:
@@ -173,6 +183,17 @@ async def on_message(message):
             with open("pics/bele.jpeg", 'rb') as f:
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
+        await message.add_reaction(emoji)
+    if msg.startswith("$news"):
+        temp = [message.content]
+        split = convert(temp)
+        query = str(split[1]) + " news"
+        websites = []
+        for j in search(query, tld="co.in", num=5, stop=10, pause=2):
+            websites.append(j)
+        await message.channel.send(random.choice(websites))
+        await message.add_reaction(emoji)
+        
     #check each message if in sad_words so we can send a meme:
     if any(word in msg.lower() for word in sad_words):
 
@@ -189,7 +210,9 @@ async def on_message(message):
         embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
         embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
         embedVar.add_field(name = "$pic [team]", value = "Returns picture related to specified team. So far supports Liverpool, Barcelona, Tottenham, and Manchester United", inline = False)
+        embedVar.add_field(name = "$news [team]", value = "Returns recent news about specified team. Make sure in place of [team] you input the full team name")
         await message.channel.send(embed=embedVar)
+        await message.add_reaction(emoji)
 
 
 keep_alive()
