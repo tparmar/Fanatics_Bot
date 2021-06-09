@@ -188,7 +188,10 @@ async def on_message(message):
     if msg.startswith("$news"):
         temp = [message.content]
         split = convert(temp)
-        query = str(split[1]) + " news"
+        if len(split) ==2:
+            query = str(split[1]) + " news"
+        else:
+            query = str(split[1]) +  " " + str(split[2]) + " news"
         websites = []
         for j in search(query):
           websites.append(j)
@@ -211,7 +214,7 @@ async def on_message(message):
         embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
         embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
         embedVar.add_field(name = "$pic [team]", value = "Returns picture related to specified team. So far supports Liverpool, Barcelona, Tottenham, and Manchester United", inline = False)
-        embedVar.add_field(name = "$news [team]", value = "Returns recent news about specified team. Make sure in place of [team] you input the full team name")
+        embedVar.add_field(name = "$news [team]", value = "Returns recent news about specified team. Make sure in place of [team] you input the full team name (max two words)")
         await message.channel.send(embed=embedVar)
         await message.add_reaction(emoji)
 
