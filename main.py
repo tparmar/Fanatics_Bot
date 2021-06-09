@@ -8,10 +8,8 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
 import google
-try:
-    from googlesearch import search
-except ImportError:
-    print("No module named 'google' found")
+from googlesearch import search
+
 
 #Create Discord Client
 client = discord.Client()
@@ -192,8 +190,8 @@ async def on_message(message):
         split = convert(temp)
         query = str(split[1]) + " news"
         websites = []
-        for j in search(query, tld="co.in", num=5, stop=10, pause=2):
-            websites.append(j)
+        for j in search(query):
+          websites.append(j)
         await message.channel.send(random.choice(websites))
         await message.add_reaction(emoji)
         
