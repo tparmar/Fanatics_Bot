@@ -9,6 +9,9 @@ from discord.ext import commands
 import asyncio
 import google
 from googlesearch import search
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime
 
 
 #Create Discord Client
@@ -75,6 +78,11 @@ def send_story():
 def convert(lst):
     return (lst[0].split())
 
+URL = 'https://www.google.com/search?pz=1&cf=all&ned=us&hl=en&tbm=nws&gl=us&as_q={query}&as_occt=any&as_drrb=b&as_mindate={month}%2F%{from_day}%2F{year}&as_maxdate={month}%2F{to_day}%2F{year}&tbs=cdr%3A1%2Ccd_min%3A3%2F1%2F13%2Ccd_max%3A3%2F2%2F13&as_nsrc=Gulf%20Times&authuser=0'
+
+def run(**params):
+    response = requests.get(URL.format(**params))
+    return response.url
 #Set discord rich presence of discord bot
 @client.event
 async def on_ready():
@@ -197,6 +205,7 @@ async def on_message(message):
           websites.append(j)
         await message.channel.send(random.choice(websites))
         await message.add_reaction(emoji)
+    
         
     #check each message if in sad_words so we can send a meme:
     if any(word in msg.lower() for word in sad_words):
