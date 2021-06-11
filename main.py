@@ -206,7 +206,7 @@ async def on_message(message):
                 temp = query
                 query = temp + n
         websites = []
-        for j in search(query):
+        for j in search(query, lang="en"):
           websites.append(j)
         await message.channel.send(random.choice(websites))
         await message.add_reaction(emoji)
