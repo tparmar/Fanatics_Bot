@@ -48,11 +48,9 @@ memes = [
     "Fun Fact: One time, Sid tried to get fancy on an open goal and tried to roulette it in, but missed the ball. Shourya took it forward, passed to Kuhsh, who crossed it in for Arjuna (who was on the other team) who volleyed it into his own net. What a play! :rofl:",
     "Remember that time Arsenal finished in the top 4? Me neither.",
     "Ask Liverpool fans where their center backs are. They won't be able to tell you anything.",
-    "What's more empty, Manchester city's fanbase or Tottenham's trophy cabinet?",
+    "What's more empty, Manchester city's stadium in a home game or Tottenham's trophy cabinet?",
     "Tottenham Fans vs Arsenal Fans ----- Totenham fans: \'Arsenal haven't finished top 4 in like forever, they are not even in Europe next season, and you guys have such bad players. I mean look at your table position!\' Arsenal Fans: \'We won the FA cup, so we are better\'",
-    "Fun Fact: To protest against hate toward LGBTQ, Ishan changed his name to Jessica with the pronouns as \'Ze\' and \'Zhem\'",
     "Fun Fact: Lord Bendter has: more wolrd cup games than George Best, more world cup goals than di stefano, more euro goals than R9, more UCL goals than pele, more premier league goals than Lionel Messi, more bundesliga goals than CR7, and more league titles than Gerrard and Reus combined. ALL HAIL LORD BENDTER",
-    "Nihaal's Rocket League IQ = 0",
     "What is a ghost's favorite soccer position? Ghoul Keeper :rofl:",
     "Why can't Cinderella play soccer? Because she always runs away from the ball",
     "Where do soccer players go to dance? The Futball :rofl:",
@@ -60,7 +58,10 @@ memes = [
     "Why did the chicken get ejected from the soccer game? For persistent fowl play.",
     "Where's the best place to shop for a soccer uniform? New Jersey :rofl:",
     "How do we know that soccer referees are happy? Because they whiste while they work :laughing:",
-    "What would you get if you crossed a soccer player and the Invisible Man? He would play soccer like no one hs ever seen :rofl:"
+    "What would you get if you crossed a soccer player and the Invisible Man? He would play soccer like no one hs ever seen :rofl:",
+    "Bharat in a give and go on a goal kick: Nope, I rather pass it into my own net",
+    "Werner on open nets: \'It's harder than you think!\' :laughing:",
+    "Nottinham Forest has more champions leagues than Manchester city :kekw:"
 ]
 
 #Choose a random quote from a database
@@ -147,7 +148,7 @@ async def on_message(message):
                 await message.channel.send(file = picture)
         await message.add_reaction(emoji)
 
-    #'pic' with liverpool command
+    #$pic with liverpool command
     if msg.startswith("$pic liverpool") or msg.startswith("$pic liv"):
         num = random.randint(0,4)
         if num == 0:
@@ -171,6 +172,8 @@ async def on_message(message):
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
         await message.add_reaction(emoji)
+    
+    #pic with man united
     if msg.startswith("$pic mun") or msg.startswith("$pic man united"):
         num = random.randint(0,1)
         if num == 0:
@@ -182,6 +185,8 @@ async def on_message(message):
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
         await message.add_reaction(emoji)
+
+    #$pic with tottenham
     if msg.startswith("$pic tot") or msg.startswith("$pic tottenham"):
         num = random.randint(0,1)
         if num == 0:
@@ -193,9 +198,11 @@ async def on_message(message):
                 picture = discord.File(f)
                 await message.channel.send(file = picture)
         await message.add_reaction(emoji)
+    
+    #news command with web scraping
     if msg.startswith("$news"):
         string = "Searching.... :hourglass_flowing_sand: "
-        await message.channel.send(string)
+        msg = await message.channel.send(string)
         query=""
         temp = [message.content]
         split = convert(temp)
@@ -209,11 +216,18 @@ async def on_message(message):
         for j in search(query, lang="en"):
           websites.append(j)
         await message.channel.send(random.choice(websites))
+        await msg.delete()
         await message.add_reaction(emoji)
     
-        
+    #latest command
+    if msg.startswith("$latest"):
+        embedVar = discord.Embed(title="Change Log", description="Here are the latest updates of the bot and the upcoming changes!", color= 0xe91e63)
+        embedVar.add_field(name = 'UPCOMING CHANGES:', value = 'Planning to add more memes, and start adding server starts (not confirmed yet testing it so far)', inline = False)
+        embedVar.add_field(name = '--6/10/21', value = 'Added more memes to the meme command. Edited the news command ($news) and made it more efficient. Updated the help command with new changes. Also added this command.', inline = False)
+        await message.channel.send(embed=embedVar)
+        await message.add_reaction(emoji)
     #check each message if in sad_words so we can send a meme:
-    if any(word in msg.lower() for word in sad_words):
+    if any(word in str(msg).lower() for word in sad_words):
 
         ran = random.randint(0,1)
         if ran == 0:
@@ -224,6 +238,7 @@ async def on_message(message):
     #help command
     if message.content.startswith("$help"):
         embedVar = discord.Embed(title="Commands of Fanatics Bot", description="Here are all of the commands of the Fanatics bot right now.", color=0x00ff00)
+        embedVar.add_field(name = '$latest', value = 'Latest changes and upcoming changes to bot', inline = False)
         embedVar.add_field(name = '$quote', value = 'Returns a random quote', inline = False)
         embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
         embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
