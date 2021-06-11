@@ -194,12 +194,17 @@ async def on_message(message):
                 await message.channel.send(file = picture)
         await message.add_reaction(emoji)
     if msg.startswith("$news"):
+        string = "Searching.... :hourglass_flowing_sand: "
+        await message.channel.send(string)
+        query=""
         temp = [message.content]
         split = convert(temp)
-        if len(split) ==2:
-            query = str(split[1]) + " news"
-        else:
-            query = str(split[1]) +  " " + str(split[2]) + " news"
+        for n in split:
+            if n == 0:
+                pass
+            else:
+                temp = query
+                query = temp + n
         websites = []
         for j in search(query):
           websites.append(j)
@@ -223,7 +228,7 @@ async def on_message(message):
         embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
         embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
         embedVar.add_field(name = "$pic [team]", value = "Returns picture related to specified team. So far supports Liverpool, Barcelona, Tottenham, and Manchester United", inline = False)
-        embedVar.add_field(name = "$news [team]", value = "Returns recent news about specified team. Make sure in place of [team] you input the full team name (max two words)")
+        embedVar.add_field(name = "$news [any team] [optional any player]", value = "Returns recent news about specified team. Make sure in place of [team] you input the full team name (max two words)")
         await message.channel.send(embed=embedVar)
         await message.add_reaction(emoji)
 
