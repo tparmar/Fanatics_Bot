@@ -76,14 +76,10 @@ def send_story():
   story = "It was March 8, 2017, and the weather was beautiful. Everyone felt it. The vibe. Although Barca were down 4-0 against PSG, there was just a feeling that Barca was still in it. As Sriboy once said: I smell a comeback! The game had an impressive attendance of 96,290 despite the home side's heavy defeat in the first game. Barcelona's Luis Suárez scored the first goal of the game in the 3rd minute after heading the ball over the line before it was cleared by Thomas Meunier. In the 40th minute, Paris Saint-Germain's Layvin Kurzawa scored an own goal in an attempt to block a shot by Andrés Iniesta. The third goal came in the 50th minute via a penalty scored by Lionel Messi after Neymar was fouled by Thomas Meunier. Barcelona's hopes were seemingly brought down after Edinson Cavani scored Paris Saint-Germain's only goal in the 62nd minute, leaving them requiring three more to win due to the away goals rule now favouring PSG. Neymar scored two goals in the closing stages – a free kick in the 88th minute and a penalty kick in the 91st – to make it 5–1. In the final seconds of the match, Neymar delivered a cross into the penalty area, and Sergi Roberto scored their sixth and final goal in the 95th minute thus winning the game 6–1 and advancing to the quarter finals 6–5 on aggregate. WHAT A GAME I SAY, WHAT A GAME. Also, I miss Suarez. That guy had huge teeth."
   return story
 
+#convert function for news command
 def convert(lst):
     return (lst[0].split())
 
-URL = 'https://www.google.com/search?pz=1&cf=all&ned=us&hl=en&tbm=nws&gl=us&as_q={query}&as_occt=any&as_drrb=b&as_mindate={month}%2F%{from_day}%2F{year}&as_maxdate={month}%2F{to_day}%2F{year}&tbs=cdr%3A1%2Ccd_min%3A3%2F1%2F13%2Ccd_max%3A3%2F2%2F13&as_nsrc=Gulf%20Times&authuser=0'
-
-def run(**params):
-    response = requests.get(URL.format(**params))
-    return response.url
 #Set discord rich presence of discord bot
 @client.event
 async def on_ready():
@@ -218,14 +214,16 @@ async def on_message(message):
         await message.channel.send(random.choice(websites))
         await msg.delete()
         await message.add_reaction(emoji)
+
     
     #latest command
     if msg.startswith("$latest"):
         embedVar = discord.Embed(title="Change Log", description="Here are the latest updates of the bot and the upcoming changes!", color= 0xe91e63)
-        embedVar.add_field(name = 'UPCOMING CHANGES:', value = 'Planning to add more memes, and start adding server starts (not confirmed yet testing it so far)', inline = False)
+        embedVar.add_field(name = 'UPCOMING CHANGES:', value = "Planning to add more memes, and I'm open to suggestions!", inline = False)
         embedVar.add_field(name = '--6/10/21', value = 'Added more memes to the meme command. Edited the news command ($news) and made it more efficient. Updated the help command with new changes. Also added this command.', inline = False)
         await message.channel.send(embed=embedVar)
         await message.add_reaction(emoji)
+
     #check each message if in sad_words so we can send a meme:
     if any(word in str(msg).lower() for word in sad_words):
 
@@ -249,5 +247,6 @@ async def on_message(message):
 
 
 keep_alive()
+
 # client.run(os.getenv('TOKEN'))
 client.run("ODE5NTc4NDM0OTc1ODI1OTcx.YEop5Q.FH_SQwXhfqghw7pFTe5eGOaRXYw")
