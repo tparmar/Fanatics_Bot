@@ -61,7 +61,7 @@ memes = [
     "What would you get if you crossed a soccer player and the Invisible Man? He would play soccer like no one hs ever seen :rofl:",
     "Bharat in a give and go on a goal kick: Nope, I rather pass it into my own net",
     "Werner on open nets: \'It's harder than you think!\' :laughing:",
-    "Nottinham Forest has more champions leagues than Manchester city :kekw:"
+    "Nottinham Forest has more champions leagues than Manchester city"
 ]
 
 #Choose a random quote from a database
