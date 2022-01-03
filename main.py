@@ -12,6 +12,7 @@ from googlesearch import search
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import pandas as pd
 
 
 #Create Discord Client
@@ -71,6 +72,19 @@ def get_quote():
     quote = json_data[0]['q'] + " -" + json_data[0]['a']
     return (quote)
 
+#Get the premier league table
+def get_table():
+    prem_table = pd.read_html('https://www.bbc.co.uk/sport/football/premier-league/table')
+    prem_table = prem_table[0]
+
+    prem_table = prem_table.drop(['Unnamed: 1'], axis=1)
+    prem_table.rename(columns={'Unnamed: 0':'Position'}, inplace=True)
+    prem_table.drop(prem_table.tail(1).index, inplace=True)
+    prem_table = prem_table[['Position', 'Team', 'P', 'W', 'D', 'L', 'F', 'A', 'GD', 'Pts']]
+    return prem_table
+
+
+
 #Send the 6-1 story
 def send_story():
   story = "It was March 8, 2017, and the weather was beautiful. Everyone felt it. The vibe. Although Barca were down 4-0 against PSG, there was just a feeling that Barca was still in it. As Sriboy once said: I smell a comeback! The game had an impressive attendance of 96,290 despite the home side's heavy defeat in the first game. Barcelona's Luis Suárez scored the first goal of the game in the 3rd minute after heading the ball over the line before it was cleared by Thomas Meunier. In the 40th minute, Paris Saint-Germain's Layvin Kurzawa scored an own goal in an attempt to block a shot by Andrés Iniesta. The third goal came in the 50th minute via a penalty scored by Lionel Messi after Neymar was fouled by Thomas Meunier. Barcelona's hopes were seemingly brought down after Edinson Cavani scored Paris Saint-Germain's only goal in the 62nd minute, leaving them requiring three more to win due to the away goals rule now favouring PSG. Neymar scored two goals in the closing stages – a free kick in the 88th minute and a penalty kick in the 91st – to make it 5–1. In the final seconds of the match, Neymar delivered a cross into the penalty area, and Sergi Roberto scored their sixth and final goal in the 95th minute thus winning the game 6–1 and advancing to the quarter finals 6–5 on aggregate. WHAT A GAME I SAY, WHAT A GAME. Also, I miss Suarez. That guy had huge teeth."
@@ -83,7 +97,7 @@ def convert(lst):
 #Set discord rich presence of discord bot
 @client.event
 async def on_ready():
-    await client.change_presence(status = discord.Status.online, activity = discord.Game(name= "$help for commands | Made by Goaters", type = "2"))
+    await client.change_presence(status = discord.Status.online, activity = discord.Game(name= "$help for commands | Made by insanity", type = "2"))
     print('We have logged in as {0.user}'.format(client))
 
 
@@ -219,17 +233,47 @@ async def on_message(message):
     #latest command
     if msg.startswith("$latest"):
         embedVar = discord.Embed(title="Change Log", description="Here are the latest updates of the bot and the upcoming changes!", color= 0xe91e63)
-        embedVar.add_field(name = 'UPCOMING CHANGES:', value = "Planning to add more memes, and I'm open to suggestions!", inline = False)
-        embedVar.add_field(name = '--6/10/21', value = 'Added more memes to the meme command. Edited the news command ($news) and made it more efficient. Updated the help command with new changes. Also added this command.', inline = False)
+        embedVar.add_field(name = 'UPCOMING CHANGES:', value = "Adding team and player information, will take time though", inline = False)
+        embedVar.add_field(name = '--1/3/22', value = 'Added the $table command to show the premier league table', inline = False)
         await message.channel.send(embed=embedVar)
         await message.add_reaction(emoji)
 
-    #check each message if in sad_words so we can send a meme:
-    if any(word in str(msg).lower() for word in sad_words):
+    # #check each message if in sad_words so we can send a meme:
+    # if any(word in str(msg).lower() for word in sad_words):
 
-        ran = random.randint(0,1)
-        if ran == 0:
-            await message.channel.send(random.choice(memes))
+    #     ran = random.randint(0,1)
+    #     if ran == 0:
+    #         await message.channel.send(random.choice(memes))
+
+    #table command
+    if msg.startswith("$table"):
+        table = get_table()
+        table_col = ""
+        embedVar = discord.Embed(title="Premier League Table", description="Here is the Updated Premier League 21/22 Season", color= 0x71368a)
+        for col in table.columns:
+            table_col = table_col + "          " + col
+        embedVar.add_field(name = table_col, value = "\u200b", inline=False)
+        table_row = ""
+        for row in range(len(table)):
+            for col in range(len(table.columns)):
+                if col==1:
+                    team = str(table.iloc[row, col])
+                    table_row = table_row + "                "
+                    while len(team) < 17:
+                        team = team + " "
+                    table_row = table_row + team
+                elif col == 2:
+                    table_row = table_row + str(table.iloc[row, col])
+                else:
+                    table_row = table_row + "          " + str(table.iloc[row, col])
+            embedVar.add_field(name = table_row, value = "\u200b", inline=False)
+            table_row = ""
+
+        await message.channel.send(embed = embedVar)
+
+        await message.add_reaction(emoji)
+                
+
             
         
     
@@ -241,7 +285,8 @@ async def on_message(message):
         embedVar.add_field(name = "$meme", value = "Returns a soccer meme", inline = False)
         embedVar.add_field(name = "$greatestmatch", value = "Returns the greatest match in soccer history", inline = False)
         embedVar.add_field(name = "$pic [team]", value = "Returns picture related to specified team. So far supports Liverpool, Barcelona, Tottenham, and Manchester United", inline = False)
-        embedVar.add_field(name = "$news [any team] [optional any player]", value = "Returns recent news about specified team. Make sure in place of [team] you input the full team name (max two words)")
+        embedVar.add_field(name = "$news [any team] [optional any player]", value = "Returns recent news about specified team. Make sure in place of [team] you input the full team name (max two words)", inline = False)
+        embedVar.add_field(name = "$table", value = "Current Premier League Table", inline = False)
         await message.channel.send(embed=embedVar)
         await message.add_reaction(emoji)
 
