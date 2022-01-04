@@ -1,18 +1,15 @@
 import discord
-import os
 import requests
 import json
 import random
+import os
 from keep_alive import keep_alive
-from discord.ext.commands import Bot
+# from discord.ext.commands import Bot
 from discord.ext import commands
-import asyncio
-import google
 from googlesearch import search
-import requests
-from bs4 import BeautifulSoup
-from datetime import datetime
 import pandas as pd
+my_secret = os.environ['TOKEN']
+import lxml
 
 
 #Create Discord Client
@@ -293,5 +290,5 @@ async def on_message(message):
 
 keep_alive()
 
-# client.run(os.getenv('TOKEN'))
-client.run("ODE5NTc4NDM0OTc1ODI1OTcx.YEop5Q.FH_SQwXhfqghw7pFTe5eGOaRXYw")
+client.run(my_secret)
+# client.run("ODE5NTc4NDM0OTc1ODI1OTcx.YEop5Q.FH_SQwXhfqghw7pFTe5eGOaRXYw")
